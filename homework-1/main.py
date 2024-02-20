@@ -6,11 +6,12 @@ from typing import Any
 
 # connect to db
 def connect_to_db() -> Any:
-    return psycopg2.connect(
+    conn = psycopg2.connect(
         database='north',
         host='localhost',
         password='2277',
         user='postgres')
+    return conn
 
 
 # load data from csv
@@ -33,9 +34,9 @@ def main():
     conn = connect_to_db()
 
     try:
-        load_data_from_csv(conn, 'north_data\\customers_data.csv', 'customers')
-        load_data_from_csv(conn, 'north_data\\employees_data.csv', 'employees')
-        load_data_from_csv(conn, 'north_data\\orders_data.csv', 'orders')
+        load_data_from_csv(conn, 'north_data/customers_data.csv', 'customers')
+        load_data_from_csv(conn, 'north_data/employees_data.csv', 'employees')
+        load_data_from_csv(conn, 'north_data/orders_data.csv', 'orders')
 
         print('Данные успешно загружены в таблицы БД')
     except Exception as e:
@@ -43,3 +44,6 @@ def main():
     finally:
         conn.close()
 
+
+if __name__ == '__main__':
+    main()
