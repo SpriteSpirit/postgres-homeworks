@@ -27,3 +27,19 @@ def load_data_from_csv(conn: Any, file_path: str, table_name: str) -> None:
                 query = f'INSERT INTO {table_name} VALUES ({placeholders})'
                 cur.execute(query, row)
         conn.commit()
+
+
+def main():
+    conn = connect_to_db()
+
+    try:
+        load_data_from_csv(conn, 'north_data\\customers_data.csv', 'customers')
+        load_data_from_csv(conn, 'north_data\\employees_data.csv', 'employees')
+        load_data_from_csv(conn, 'north_data\\orders_data.csv', 'orders')
+
+        print('Данные успешно загружены в таблицы БД')
+    except Exception as e:
+        print(f'Возникла ошибка при загрузке данных: {e}')
+    finally:
+        conn.close()
+
