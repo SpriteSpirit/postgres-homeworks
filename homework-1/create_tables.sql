@@ -1,4 +1,3 @@
--- SQL-команды для создания таблиц
 -- create employees table
 CREATE TABLE employees (
 	employee_id int PRIMARY KEY,
@@ -11,7 +10,7 @@ CREATE TABLE employees (
 
 -- create customers table
 CREATE TABLE customers (
-	customer_id int PRIMARY KEY,
+	customer_id varchar(100) PRIMARY KEY,
 	company_name varchar(100),
 	contact_name varchar(100)
 );
